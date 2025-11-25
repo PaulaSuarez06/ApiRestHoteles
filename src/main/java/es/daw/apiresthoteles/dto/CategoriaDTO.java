@@ -7,5 +7,5 @@ import lombok.Data;
 public class CategoriaDTO {
 
     private String codigo;
-    private String descripcion;
+    private String nombre;
 }
