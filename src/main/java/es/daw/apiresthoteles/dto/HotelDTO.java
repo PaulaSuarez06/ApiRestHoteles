@@ -2,9 +2,11 @@ package es.daw.apiresthoteles.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 @Data
+@JsonPropertyOrder({ "codigo", "nombre", "descripcion", "piscina", "localidad", "categoria" })
 
 public class HotelDTO {
 
@@ -13,7 +15,5 @@ public class HotelDTO {
     private String descripcion;
     private Boolean piscina;
     private String localidad;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String categoria;
+    private CategoriaDTO categoria;
 }

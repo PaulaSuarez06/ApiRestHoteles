@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface HotelMapper {
 
-    @Mapping(source="categoria.id", target="categoria")
+    @Mapping(source="categoria", target="categoria")
     HotelDTO hotelToHotelDTO(Hotel hotel);
 
     @Mapping(target="categoria", ignore = true)

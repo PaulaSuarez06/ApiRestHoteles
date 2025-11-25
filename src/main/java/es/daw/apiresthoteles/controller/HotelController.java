@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,10 +20,11 @@ public class HotelController {
 private final HotelService hotelService;
 
 
-@GetMapping
-    public ResponseEntity<List<HotelDTO>> findAll(){
-    return ResponseEntity.ok(hotelService.findAll());
-}
+@GetMapping("/buscar")
+    public ResponseEntity <List<HotelDTO>> buscar (@RequestParam(required = false) String codigoCategoria,
+                                                   @RequestParam(required = false) String localidad){
+    return ResponseEntity.ok(hotelService.findAll(codigoCategoria,localidad));
 
+}
 
 }
