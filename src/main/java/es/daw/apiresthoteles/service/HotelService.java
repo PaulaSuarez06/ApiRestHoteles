@@ -37,11 +37,21 @@ private final HotelMapper hotelMapper;
     }
 
     public Optional<HotelDTO> crear(HotelCrearDTO hotelDTO){
+        // Validar que la categoria existe
         Categoria categoria = categoriaRepository
                 .findByCodigo(hotelDTO.getCategoriaCodigo())
                 .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
 
-        HotelCrearDTO hotel = HotelCrearDTO.builder().categoriaCodigo(categoria.getCodigo()).build();
+        Hotel hotel = new Hotel();
+        hotel.setCodigo(hotelDTO.getCodigo());
+        hotel.setNombre(hotelDTO.getNombre());
+        hotel.setDescripcion(hotelDTO.getDescripcion());
+        hotel.setPiscina(hotelDTO.getPiscina());
+        hotel.setLocalidad(hotelDTO.getLocalidad());
+        hotel.setCategoria(categoria);
+
+        Hotel saved = hotelRepository.save(hotel);
+        return Optional.of(hotelMapper.hotelToHotelDTO(saved));
 
     }
 

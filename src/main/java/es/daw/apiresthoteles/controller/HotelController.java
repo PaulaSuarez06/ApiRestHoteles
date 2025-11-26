@@ -29,15 +29,12 @@ private final HotelService hotelService;
 
 @PostMapping
     public ResponseEntity<HotelDTO> crear(@RequestBody HotelCrearDTO hotelCrearDTO){
-        Optional<HotelDTO> hotel = hotelService.crear();
+        Optional<HotelDTO> hotelCreado = hotelService.crear(hotelCrearDTO);
+        // me manda en el body el hoteldto personalizado, me lo guardo en el hotelcreado y llamo al servicio
+    // para que me haga toda la conversion de hoteldto a hotel y guardarlo en la bd
+        return hotelCreado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
 
-        if(hotel.isPresent()){
-            return ResponseEntity.status(HttpStatus.CREATED).body(hotel.get());
-        } else{
-            return ResponseEntity.badRequest().build();
-        }
+
 }
-
-
 
 }
