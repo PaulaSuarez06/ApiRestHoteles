@@ -1,7 +1,9 @@
 package es.daw.apiresthoteles.service;
 
 
+import es.daw.apiresthoteles.dto.HotelCrearDTO;
 import es.daw.apiresthoteles.dto.HotelDTO;
+import es.daw.apiresthoteles.entity.Categoria;
 import es.daw.apiresthoteles.entity.Hotel;
 import es.daw.apiresthoteles.mapper.HotelMapper;
 import es.daw.apiresthoteles.repository.CategoriaRepository;
@@ -10,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +34,15 @@ private final HotelMapper hotelMapper;
         else {hoteles = hotelRepository.findAll();}
 
         return hotelMapper.hotelListToHotelDTOList(hoteles);
+    }
+
+    public Optional<HotelDTO> crear(HotelCrearDTO hotelDTO){
+        Categoria categoria = categoriaRepository
+                .findByCodigo(hotelDTO.getCategoriaCodigo())
+                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+
+        HotelCrearDTO hotel = HotelCrearDTO.builder().categoriaCodigo(categoria.getCodigo()).build();
+
     }
 
 

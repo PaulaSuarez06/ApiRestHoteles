@@ -1,7 +1,7 @@
 package es.daw.apiresthoteles.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 

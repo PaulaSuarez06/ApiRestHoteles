@@ -1,16 +1,16 @@
 package es.daw.apiresthoteles.controller;
 
 
+import es.daw.apiresthoteles.dto.HotelCrearDTO;
 import es.daw.apiresthoteles.dto.HotelDTO;
 import es.daw.apiresthoteles.service.HotelService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/hoteles") //esto es la raiz de la api
@@ -26,5 +26,18 @@ private final HotelService hotelService;
     return ResponseEntity.ok(hotelService.findAll(codigoCategoria,localidad));
 
 }
+
+@PostMapping
+    public ResponseEntity<HotelDTO> crear(@RequestBody HotelCrearDTO hotelCrearDTO){
+        Optional<HotelDTO> hotel = hotelService.crear();
+
+        if(hotel.isPresent()){
+            return ResponseEntity.status(HttpStatus.CREATED).body(hotel.get());
+        } else{
+            return ResponseEntity.badRequest().build();
+        }
+}
+
+
 
 }

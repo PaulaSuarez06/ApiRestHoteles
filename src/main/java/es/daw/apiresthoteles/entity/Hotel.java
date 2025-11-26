@@ -2,6 +2,7 @@ package es.daw.apiresthoteles.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,9 @@ import java.util.Set;
 public class Hotel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String codigo;
 
     private String nombre;

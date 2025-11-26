@@ -17,9 +17,9 @@ public class Habitacion {
 
 
     private String codigo;
-    private String tamano;
+    private Integer tamano;
     private Boolean doble;
-    private double precio_noche;
+    private Double precio_noche;
     private Boolean incluye_desayuno;
     private Boolean ocupada;
 
