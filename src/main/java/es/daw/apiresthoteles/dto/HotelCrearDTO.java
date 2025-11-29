@@ -3,7 +3,11 @@ package es.daw.apiresthoteles.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 
 @Data
 public class HotelCrearDTO {

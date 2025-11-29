@@ -69,4 +69,20 @@ public class HabitacionService {
 
     }
 
+    public void delete(String codigoHabitacion){
+        Habitacion habitacion = habitacionRepository.findByCodigo(codigoHabitacion)
+                .orElseThrow(() -> new RuntimeException("Habitacion no encontrada"));
+        habitacionRepository.delete(habitacion);
+
+    }
+
+    public HabitacionDTO ocuparHabitacion(String codigoHabitacion){
+        Habitacion habitacion = habitacionRepository.findByCodigo(codigoHabitacion)
+                .orElseThrow(() -> new RuntimeException("Habitacion no encontrada"));
+
+        habitacion.setOcupada(true);
+        return habitacionMapper.habitacionToHabitacionDTO(habitacionRepository.save(habitacion));
+
+    }
+
 }

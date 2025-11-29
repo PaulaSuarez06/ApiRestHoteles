@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -21,6 +22,6 @@ public class Categoria {
     private String descripcion;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Hotel> hoteles;
+    private List<Hotel> hoteles;
 
 }

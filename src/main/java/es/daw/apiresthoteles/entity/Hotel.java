@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,7 +34,7 @@ public class Hotel {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Habitacion> habitaciones;
+    private List<Habitacion> habitaciones;
 
     // la dueña de esta relacion es habitacion.
 
